@@ -5,10 +5,9 @@ import java.util.Scanner;
 public class RunGame {
     private String selectedWord;
     private String hiddenWord;
-
     WordGenerator wordGenerator = new WordGenerator();
     HandleGuesses handleGuesses = new HandleGuesses();
-    HandleLives handleLives = new HandleLives(selectedWord.length() + 2);
+    HandleLives handleLives = new HandleLives(5);
     Scanner scanner = new Scanner(System.in);
 
     public RunGame() {
@@ -16,11 +15,15 @@ public class RunGame {
         this.hiddenWord = handleGuesses.checkGuess(selectedWord);
     }
 
+    public WordGenerator getWordGenerator() {
+        return wordGenerator;
+    }
+
     public void startGame() {
-            System.out.println("Here's your word: " + hiddenWord);
-            System.out.println("So far you've guessed: " + handleGuesses.getGuessedLetters());
-            System.out.println("Remaining lives: " + handleLives.getLives());
-            System.out.println("What's your next guess?");
+        System.out.println("Here's your word " + hiddenWord);
+        System.out.println("So far you've guessed: " + handleGuesses.getGuessedLetters());
+        System.out.println("Remaining lives: " + handleLives.getLives());
+        System.out.println("What's your next guess?");
     }
 
     public void handleGuess(String guess) {
